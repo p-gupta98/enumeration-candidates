@@ -28,17 +28,11 @@ def find(id)
   end
 
   def ruby_or_python(candidate)
-    candidate[:languages].each do |language|
-      if language == 'Ruby' || language == 'Python'
-        return true
-      else
-        return false
-      end
-    end
+    candidate[:languages].include?('Ruby') || candidate[:languages].include?('Python')
   end
 
   def days_applied(candidate)
-    if candidate[:date_applied] <= 15.days.ago.to_date
+    if candidate[:date_applied] >= 15.days.ago.to_date
       return true
     else
         return false
@@ -46,7 +40,7 @@ def find(id)
   end
 
   def age_limit(candidate)
-    if candidate(:age) > 17
+    if candidate[:age] > 17
       return true
     else
         return false
@@ -54,10 +48,13 @@ def find(id)
   end
   
   def qualified_candidates(candidates)
-    # Your code Here
-    candidates.each do |candidate|
-      if experienced?(candidate)
-        qualified = true
+    candidates.select do |candidate|
+      experienced?(candidate) &&
+      github_master?(candidate) &&
+      ruby_or_python(candidate) &&
+      days_applied(candidate) &&
+      age_limit(candidate)
+    end
   end
   
   # More methods will go below
