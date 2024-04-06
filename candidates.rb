@@ -38,7 +38,7 @@ require 'active_support/all'
     years_of_experience: 12,
     github_points: 32,
     languages: ['VB', 'Cobol', 'Fortran'],
-    date_applied: 2.days.ago.to_date,
+    date_applied: x,
     age: 42
   },
   {
