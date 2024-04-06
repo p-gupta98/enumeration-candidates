@@ -3,11 +3,16 @@
 
 def find(id)
     # Your code Here
+    @candidates.each do |candidate|
+      if candidate[:id] == id
+        return candidate
+      end
+    end
   end
   
   def experienced?(candidate)
     # Your code Here
-    if candidate[years_of_experience] >= 2
+    if candidate[:years_of_experience] >= 2
       return true
     else
       return false
